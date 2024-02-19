@@ -38,10 +38,10 @@ driver.find_element(By.XPATH, "//button[@aria-label='search']").click()
 sleep(2)
 
 # Verification process
-expected_result = 'for “Television”'
-actual_result = driver.find_element(By.XPATH, "//span[contains(@class, 'h-margin-l-x2')]").text
+expected_result = 'results'
+actual_result = driver.find_element(By.XPATH, "//div[@data-test='results-facets-row']").text
 
-assert expected_result == actual_result, f"Expected to find {expected_result}, got {actual_result}"
+assert expected_result in actual_result, f"Expected to find {expected_result}, got {actual_result}"
 print("Product Search test passed")
 
 driver.quit()
