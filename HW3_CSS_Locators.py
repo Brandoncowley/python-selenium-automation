@@ -1,3 +1,17 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from time import sleep
+
+# get the path to the ChromeDriver executable
+driver_path = ChromeDriverManager().install()
+
+# create a new Chrome browser instance
+service = Service(driver_path)
+driver = webdriver.Chrome(service=service)
+driver.maximize_window()
+
 # HOMEWORK 3 = CSS LOCATORS
 
 # This task does not need to execute, but rather documents the ways that we can locate elements on a webpage.
@@ -39,6 +53,6 @@ driver.find_element(By.CSS_SELECTOR, '#continue')
 # Conditions of Use link
 driver.find_element(By.CSS_SELECTOR, '[href*="condition"]')
 # Privacy Notice link
-driver.find_element(By.XPATH, "//a[text()='Privacy Notice']")
+driver.find_element(By.CSS_SELECTOR, '[href*="register_notification_privacy"]')
 # Sign in link
 driver.find_element(By.CSS_SELECTOR, '[href*="signin"]')
