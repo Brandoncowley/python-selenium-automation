@@ -1,6 +1,5 @@
 # Created by brandon at 2/19/24
 Feature: Test scenarios for Target website
-  # Tests to include checking empty cart message and access to Signin form
 
   Scenario: User can see empty cart message
     Given Open Target page
@@ -15,4 +14,7 @@ Feature: Test scenarios for Target website
     Then Verify Sign in form opens
 
 
-
+Scenario: User can search for product
+  Given Open Target page
+  When Search for pillow
+  Then Verify pillow in search results
