@@ -1,0 +1,59 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #81ecec, #6c5ce7);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    margin: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Slightly reduced opacity for frosty effect */
+    backdrop-filter: blur(15px); /* Increased blur for frosty texture */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+    color: #f5f5fa;
+}
+
+td {
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 25px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+img {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+ol {
+    padding-left: 20px;
+}
+
+/* Add animation on load */
+h1, h2, p, li {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
