@@ -10,7 +10,8 @@ Feature: Target UI tests and add item to cart
      Given Open Target page
      When Search for chair
      And Add item to cart
-     Then Verify item added to cart
+     Then Open Target cart
+     And Verify item added to cart
 
   Scenario: Verify UI elements on Target Help page
     Given Open Target Help page

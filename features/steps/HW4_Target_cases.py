@@ -14,6 +14,11 @@ def open_target_help_page(context):
     sleep(2)
 
 
+@then('Open Target cart')
+def open_cart(context):
+    context.driver.get("https://www.target.com/cart")
+
+
 @then('Verify Circle Benefits are present')
 def verify_circle_benefits(context):
     context.driver.find_element(By.CSS_SELECTOR, '[class*="styles__BenefitsGrid"]')
@@ -30,10 +35,8 @@ def verify_benefits_count(context, number):
 @when('Add item to cart')
 def add_to_cart(context):
     context.driver.find_element(By.CSS_SELECTOR, '[id*="addToCartButtonOrTextIdFor"]').click()
-    sleep(4)
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="shippingButton"]').click()
     sleep(2)
-    context.driver.find_element(By.CSS_SELECTOR, '[href="/cart"]').click()
+    context.driver.find_element(By.CSS_SELECTOR, '[data-test="shippingButton"]').click()
     sleep(2)
 
 
