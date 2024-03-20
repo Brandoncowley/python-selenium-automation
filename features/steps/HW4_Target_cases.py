@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 from behave import given, when, then
 from time import sleep
 
@@ -11,7 +13,7 @@ def open_target_circle_page(context):
 @given('Open Target Help page')
 def open_target_help_page(context):
     context.driver.get("https://help.target.com/help")
-    sleep(2)
+
 
 
 @then('Open Target cart')
@@ -32,12 +34,20 @@ def verify_benefits_count(context, number):
     assert len(boxes) == number, f'Expected {number} links, got {len(boxes)} instead.'
 
 
+SEARCH_RESULT_ITEMS = (By.CSS_SELECTOR, '[id*="addToCartButtonOrTextIdFor"]')
+SIDE_NAV_ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, '[data-test="shippingButton"]')
+
+
 @when('Add item to cart')
 def add_to_cart(context):
-    context.driver.find_element(By.CSS_SELECTOR, '[id*="addToCartButtonOrTextIdFor"]').click()
-    sleep(2)
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="shippingButton"]').click()
-    sleep(2)
+    context.driver.wait.until(EC.element_to_be_clickable(SEARCH_RESULT_ITEMS),
+                              message="Search result items have not loaded")
+    context.driver.find_element(*SEARCH_RESULT_ITEMS).click()
+    # sleep(2)
+    context.driver.wait.until(EC.element_to_be_clickable(SIDE_NAV_ADD_TO_CART_BUTTON),
+                              message="Add to Cart button not found")
+    context.driver.find_element(*SIDE_NAV_ADD_TO_CART_BUTTON).click()
+    # sleep(2)
 
 
 @then('Verify UI elements are present')

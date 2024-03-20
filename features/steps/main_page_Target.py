@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 from behave import given, when, then
 from time import sleep
 
@@ -11,19 +13,16 @@ def open_target_page(context):
 @when('Click on Cart icon')
 def click_on_cart_icon(context):
     context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/CartLink"]').click()
-    sleep(2)
 
 
 @when('Click on Sign in')
 def click_sign_in(context):
     context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/AccountLink"]').click()
-    sleep(2)
 
 
 @when('Click Sign in on side menu')
 def click_side_menu_sign_in(context):
     context.driver.find_element(By.CSS_SELECTOR, '[data-test="accountNav-signIn"]').click()
-    sleep(2)
 
 
 @then('Verify header is present')
@@ -42,7 +41,6 @@ def verify_header_has_links(context, number):
 @when('Search for {product}')
 def search_for_product(context, product):
     context.driver.find_element(By.ID, 'search').send_keys(product)
-    sleep(1)
     context.driver.find_element(By.CSS_SELECTOR, '[aria-label="search"]').click()
     sleep(6)
 
