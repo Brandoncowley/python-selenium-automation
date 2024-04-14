@@ -7,7 +7,8 @@ from time import sleep
 
 @then('Verify empty cart')
 def verify_empty_cart(context):
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="boxEmptyMsg"]')
+    # context.driver.find_element(By.CSS_SELECTOR, '[data-test="boxEmptyMsg"]')
+    context.app.cart_page.verify_empty_cart() # modified to page object format
 
 
 @then('Verify Sign in form opens')

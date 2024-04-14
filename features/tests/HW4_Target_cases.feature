@@ -7,7 +7,7 @@ Feature: Target UI tests and add item to cart
     And Verify page has 5 Benefits boxes
 
    Scenario: Add product to cart
-     Given Open Target page
+     Given Open Target main page
      When Search for chair
      And Add item to cart
      Then Open Target cart

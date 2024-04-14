@@ -5,14 +5,32 @@ from behave import given, when, then
 from time import sleep
 
 
-@given('Open Target page')
+@given('Open Target main page')
 def open_target_page(context):
-    context.driver.get("https://target.com")
+    # context.driver.get("https://target.com")
+    context.app.main_page.open_main() # modified to page object format
+
+
+@when('Search for {product}')
+def search_for_product(context, product):
+    # context.driver.find_element(By.ID, 'search').send_keys(product)
+    # context.driver.find_element(By.CSS_SELECTOR, '[aria-label="search"]').click()
+    # sleep(6)
+    context.app.main_page.search(product)  # modified to page object format
+
+
+@then('Verify {expected_result} in search results')
+def verify_search_result(context, expected_result):
+    # actual_result = context.driver.find_element(By.CSS_SELECTOR, '[data-test="results-facets-row"]').text
+    # assert expected_result in actual_result, f"Expected to find {expected_result}, got {actual_result}"
+    # print("Product Search test passed")
+    context.app.search_results_page.verify_search_result(expected_result)
 
 
 @when('Click on Cart icon')
 def click_on_cart_icon(context):
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/CartLink"]').click()
+    # context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/CartLink"]').click()
+    context.app.main_page.click_cart()  # modified to page object format
 
 
 @when('Click on Sign in')
@@ -37,16 +55,3 @@ def verify_header_has_links(context, number):
     print(links)
     assert len(links) == number, f'Expected {number} links, got {len(links)} instead.'
 
-
-@when('Search for {product}')
-def search_for_product(context, product):
-    context.driver.find_element(By.ID, 'search').send_keys(product)
-    context.driver.find_element(By.CSS_SELECTOR, '[aria-label="search"]').click()
-    sleep(6)
-
-
-@then('Verify {expected_result} in search results')
-def verify_search_results(context, expected_result):
-    actual_result = context.driver.find_element(By.CSS_SELECTOR, '[data-test="results-facets-row"]').text
-    assert expected_result in actual_result, f"Expected to find {expected_result}, got {actual_result}"
-    print("Product Search test passed")
