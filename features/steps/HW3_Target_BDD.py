@@ -16,7 +16,6 @@ def verify_sign_in_form(context):
     context.driver.find_element(By.CSS_SELECTOR, '#login')
 
 
-
 @then('Verify item added to cart')
 def verify_item_added(context):
     context.driver.find_element(By.CSS_SELECTOR, '[data-test="cartItem"]')
